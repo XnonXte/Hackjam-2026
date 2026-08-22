@@ -16,6 +16,20 @@ public class CelesteMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float horizontalInput;
 
+    // --- TAMBAHAN UNTUK MOVEMENT LOCK ---
+    private float lockTimer;
+
+    public void LockMovement(float duration)
+    {
+        lockTimer = duration;
+    }
+
+    public float GetHorizontalInput()
+    {
+        return horizontalInput;
+    }
+    // ------------------------------------
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,11 +55,22 @@ public class CelesteMovement : MonoBehaviour
             ? 0f
             : moveAction.action.ReadValue<Vector2>().x;
 
-        Debug.Log("Input Horizontal: " + horizontalInput);
+        // Kurangi timer lock setiap frame
+        if (lockTimer > 0)
+        {
+            lockTimer -= Time.deltaTime;
+        }
+
+        // Matikan Debug Log jika tidak diperlukan agar Console tidak penuh
+        // Debug.Log("Input Horizontal: " + horizontalInput);
     }
 
     private void FixedUpdate()
     {
+        // --- CEK MOVEMENT LOCK ---
+        // Jika sedang dikunci (misal saat Wall Jump), hentikan eksekusi pergerakan di bawahnya
+        if (lockTimer > 0) return;
+
         // 1. Tentukan kecepatan target berdasarkan input
         float targetSpeed = horizontalInput * maxSpeed;
 
@@ -74,5 +99,10 @@ public class CelesteMovement : MonoBehaviour
         float newVelocityX = Mathf.MoveTowards(rb.linearVelocity.x, targetSpeed, accelRate * Time.fixedDeltaTime);
 
         rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
+    }
+
+    public float GetVerticalInput()
+    {
+        return moveAction == null ? 0f : moveAction.action.ReadValue<Vector2>().y;
     }
 }
