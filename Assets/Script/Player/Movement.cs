@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.15f;
+    [SerializeField] private float groundCheckRadius = 1f;
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
@@ -73,14 +73,15 @@ public class Movement : MonoBehaviour
             groundLayer) != null;
     }
 
-    // private void OnDrawGizmosSelected()
-    // {
-    //     if (groundCheck == null)
-    //     {
-    //         return;
-    //     }
-    // }
-    // Gizmos.color = Color.yellow;
-    //     Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null)
+        {
+            return;
+        }
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+    }
 
 }
