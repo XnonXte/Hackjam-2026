@@ -75,24 +75,25 @@ public class WallMechanics : MonoBehaviour
         bool isGrabHeld = grabAction != null && grabAction.action.IsPressed();
         float vInput = movementScript.GetVerticalInput();
 
-        // --- CEK LEDGE VAULT ---
+        // --- LEDGE-VAULT ---
         if (isGrabHeld && vInput > 0 && IsWalled() && !IsTopWalled())
         {
             StartCoroutine(PerformLedgeVault());
             return;
         }
 
-        // --- Cek Status Grab Biasa ---
+        // --- CLIMBING & SLIDING ---
         if (IsWalled() && isGrabHeld)
         {
             isGrabbing = true;
             isWallSliding = false;
+            // Debug.Log($"IsWalled={IsWalled()} IsTopWalled={IsTopWalled()} y={rb.linearVelocity.y}");
         }
         else
         {
             isGrabbing = false;
 
-            if (IsWalled() && !IsGrounded() && rb.linearVelocity.y < 0 && hInput == facingDirection)
+            if (IsWalled() && !IsGrounded() && rb.linearVelocity.y < 0 && hInput * facingDirection > 0.01f)
             {
                 isWallSliding = true;
             }
@@ -102,7 +103,8 @@ public class WallMechanics : MonoBehaviour
             }
         }
 
-        // --- Input Lompat ---
+        // --- WALL JUMP ---
+        // Jika nanti lompat ini ternyata juga di disable pada GamePlay nanti bisa disesuaikan agar mengikuti logika di Jump.cs Saja.
         if (jumpAction != null && jumpAction.action.WasPressedThisFrame())
         {
             if (isWallSliding || isGrabbing)
@@ -120,16 +122,7 @@ public class WallMechanics : MonoBehaviour
         {
             rb.gravityScale = 0f;
             float vInput = movementScript.GetVerticalInput();
-
-            if (vInput > 0 && !IsTopWalled())
-            {
-                vInput = 0f;
-                rb.linearVelocity = new Vector2(0f, 0f);
-            }
-            else
-            {
-                rb.linearVelocity = new Vector2(0f, vInput * climbSpeed);
-            }
+            rb.linearVelocity = new Vector2(0f, vInput * climbSpeed);
         }
         else
         {
@@ -152,9 +145,12 @@ public class WallMechanics : MonoBehaviour
 
     private IEnumerator PerformLedgeVault()
     {
+        // Debug.Log("Performing Ledge Vault");
         isLedgeVaulting = true;
         movementScript.LockMovement(ledgeVaultDuration + 0.05f);
-        rb.isKinematic = true;
+
+        RigidbodyType2D initialBodyType = rb.bodyType;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.linearVelocity = Vector2.zero;
 
         Vector2 startPos = transform.position;
@@ -169,10 +165,11 @@ public class WallMechanics : MonoBehaviour
         }
 
         transform.position = targetPos;
-        rb.isKinematic = false;
+        rb.bodyType = initialBodyType;
         isLedgeVaulting = false;
     }
 
+    //  <===== HELPER FUNCTIONS =====>
     private bool IsWalled()
     {
         if (wallCheck == null) return false;
@@ -187,7 +184,6 @@ public class WallMechanics : MonoBehaviour
         return hit.collider != null;
     }
 
-    // INI DIA FUNGSI YANG HILANG
     private bool IsGrounded()
     {
         if (groundCheck == null) return false;
@@ -207,10 +203,8 @@ public class WallMechanics : MonoBehaviour
             Gizmos.DrawLine(topWallCheck.position, topWallCheck.position + (Vector3)(Vector2.right * facingDirection * wallCheckDistance));
         }
 
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.green; // Ini Gizmoz untuk menunjukkan posisi target ledge vault.
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(ledgeVaultOffset.x * facingDirection, ledgeVaultOffset.y, 0));
-
-        // Gizmos tambahan untuk Ground Check agar gampang disetel
         if (groundCheck != null)
         {
             Gizmos.color = Color.yellow;

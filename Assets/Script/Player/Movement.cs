@@ -5,36 +5,21 @@ using UnityEngine.InputSystem;
 public class CelesteMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float maxSpeed = 9f; // Kecepatan maksimal berlari
-    [SerializeField] private float acceleration = 40f; // Seberapa cepat mencapai maxSpeed
-    [SerializeField] private float deceleration = 40f; // Seberapa cepat berhenti saat tombol dilepas
-    [SerializeField] private float turnSpeed = 80f; // Seberapa cepat berbalik arah saat sedang berlari
+    [SerializeField] private float maxSpeed = 9f;
+    [SerializeField] private float acceleration = 40f;
+    [SerializeField] private float deceleration = 40f;
+    [SerializeField] private float turnSpeed = 80f;
 
     [Header("Input")]
     [SerializeField] private InputActionReference moveAction;
 
     private Rigidbody2D rb;
     private float horizontalInput;
-
-    // --- TAMBAHAN UNTUK MOVEMENT LOCK ---
     private float lockTimer;
-
-    public void LockMovement(float duration)
-    {
-        lockTimer = duration;
-    }
-
-    public float GetHorizontalInput()
-    {
-        return horizontalInput;
-    }
-    // ------------------------------------
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        // Memastikan Rigidbody tidak berputar
         rb.freezeRotation = true;
     }
 
@@ -50,46 +35,44 @@ public class CelesteMovement : MonoBehaviour
 
     private void Update()
     {
-        // Membaca input (-1 untuk kiri, 1 untuk kanan, 0 untuk diam)
         horizontalInput = moveAction == null
             ? 0f
             : moveAction.action.ReadValue<Vector2>().x;
-
-        // Kurangi timer lock setiap frame
         if (lockTimer > 0)
         {
             lockTimer -= Time.deltaTime;
         }
 
-        // Matikan Debug Log jika tidak diperlukan agar Console tidak penuh
         // Debug.Log("Input Horizontal: " + horizontalInput);
     }
 
     private void FixedUpdate()
     {
-        // --- CEK MOVEMENT LOCK ---
-        // Jika sedang dikunci (misal saat Wall Jump), hentikan eksekusi pergerakan di bawahnya
         if (lockTimer > 0) return;
 
-        // 1. Tentukan kecepatan target berdasarkan input
+        // 1. Kecepatan Move Seharusnya.
         float targetSpeed = horizontalInput * maxSpeed;
 
-        // 2. Tentukan rate perubahan (akselerasi, deselerasi, atau berbalik arah)
+        // 2. Akselerasi atau Deselerasi
         float accelRate;
 
-        if (Mathf.Abs(targetSpeed) > 0.01f) // Jika pemain menekan tombol (ada input)
+        // Jika Player mencoba Maju.
+        if (Mathf.Abs(targetSpeed) > 0.01f)
         {
-            // Cek apakah pemain mencoba berbalik arah (input berlawanan dengan arah gerak saat ini)
+            // Ini bacanya: Jika targetSpeed memiliki tanda yang berbeda dengan kecepatan saat ini (Player putar balik) dan Player sedang bergerak.
+            // Intinya: Jika Player putar balik saat sedang Move.
             if (Mathf.Sign(targetSpeed) != Mathf.Sign(rb.linearVelocity.x) && Mathf.Abs(rb.linearVelocity.x) > 0.01f)
             {
-                accelRate = turnSpeed; // Gunakan kecepatan putar balik yang lebih tinggi
+                // Percepatan putar balik.
+                accelRate = turnSpeed;
             }
             else
             {
-                accelRate = acceleration; // Sedang berlari maju
+                // Percepatan normal.
+                accelRate = acceleration;
             }
         }
-        else // Jika pemain melepas tombol
+        else
         {
             accelRate = deceleration;
         }
@@ -101,8 +84,17 @@ public class CelesteMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
     }
 
+    //  <====== PUBLIC METHODS =====>
     public float GetVerticalInput()
     {
         return moveAction == null ? 0f : moveAction.action.ReadValue<Vector2>().y;
+    }
+    public void LockMovement(float duration)
+    {
+        lockTimer = duration;
+    }
+    public float GetHorizontalInput()
+    {
+        return horizontalInput;
     }
 }
