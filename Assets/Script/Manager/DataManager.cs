@@ -26,6 +26,7 @@ public class GameData
     public List<LevelData> levels = new List<LevelData>();
 }
 
+// --- DATA MANAGER MAIN CLASS ---
 public static class DataManager
 {
     private static GameData currentData = null;
@@ -54,6 +55,7 @@ public static class DataManager
         return currentData;
     }
 
+    // --- MENGAMBIL STATUS COKE PER LEVEL ---
     public static bool IsCokeAlreadyCollected(int levelID, string cokeID)
     {
         if (currentData == null) LoadData();
@@ -66,6 +68,39 @@ public static class DataManager
         return false;
     }
 
+    // --- FITUR BARU: MENGHITUNG TOTAL KESELURUHAN COKE ---
+    public static int GetTotalCollectedCokes()
+    {
+        if (currentData == null) LoadData();
+
+        int totalCokes = 0;
+        foreach (LevelData level in currentData.levels)
+        {
+            foreach (CokeStatus coke in level.cokeCollected)
+            {
+                if (coke.isCollected)
+                {
+                    totalCokes++;
+                }
+            }
+        }
+        return totalCokes;
+    }
+
+    // --- FITUR BARU: RESET DATA UNTUK TESTING ---
+    public static void ResetData()
+    {
+        string path = GetSavePath();
+        if (File.Exists(path))
+        {
+            File.Delete(path); // Menghapus file JSON fisik
+        }
+
+        currentData = new GameData(); // Mengosongkan data di memori
+        Debug.LogWarning("⚠️ Save Data telah di-reset dan dihapus!");
+    }
+
+    // --- MENYIMPAN PROGRESS SETELAH MENCAPAI GARIS AKHIR ---
     public static void SaveLevelProgress(int levelID, bool isCompleted, float finishTime, List<string> sessionCokes)
     {
         if (currentData == null) LoadData();
@@ -80,13 +115,19 @@ public static class DataManager
             currentData.levels.Add(levelData);
         }
 
-        levelData.isCompleted = isCompleted;
+        // Pastikan status complete tidak berubah jadi false kalau sudah pernah true
+        if (isCompleted)
+        {
+            levelData.isCompleted = true;
+        }
 
+        // Logika Best Time: Simpan jika waktu masih 0 (belum ada rekor) atau finishTime lebih cepat
         if (levelData.bestTime == 0 || finishTime < levelData.bestTime)
         {
             levelData.bestTime = finishTime;
         }
 
+        // Masukkan Coke baru ke dalam data permanen
         foreach (string cokeID in sessionCokes)
         {
             CokeStatus existingCoke = levelData.cokeCollected.Find(c => c.cokeID == cokeID);
@@ -111,7 +152,7 @@ public static class DataManager
             nextLevel.isUnlocked = true;
         }
 
-        // 3. SIMPAN KE JSON (Hanya dipanggil satu kali saja di paling akhir)
+        // 3. SIMPAN KE FILE JSON
         string finalJson = JsonUtility.ToJson(currentData, true);
         File.WriteAllText(GetSavePath(), finalJson);
     }
