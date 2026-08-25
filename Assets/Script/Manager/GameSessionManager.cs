@@ -21,6 +21,7 @@ public class GameSessionManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Reset Session")]
     public void ResetSession()
     {
         collectedCokesInSession.Clear();
