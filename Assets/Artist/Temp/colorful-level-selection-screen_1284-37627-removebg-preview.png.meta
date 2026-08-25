@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: 0ad7d55de62f20f46b2098e2d2597e34
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5504153791589919814
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_0
+  - first:
+      213: 5246865161555403721
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_1
+  - first:
+      213: -8566358652629101196
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_2
+  - first:
+      213: -3045871844958875042
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_3
+  - first:
+      213: -5618309045056306857
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_4
+  - first:
+      213: 4197351798775190810
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_5
+  - first:
+      213: -2194012084346925076
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_6
+  - first:
+      213: 1251396008810449404
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_7
+  - first:
+      213: 1966986982163965725
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_8
+  - first:
+      213: 1677652205867709947
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_9
+  - first:
+      213: 3237108863288772075
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_10
+  - first:
+      213: -1496943014570924689
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_11
+  - first:
+      213: 706391776016078343
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_12
+  - first:
+      213: -6052650417156270408
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_13
+  - first:
+      213: -1670161903013560274
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_14
+  - first:
+      213: 3699833892557279146
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_15
+  - first:
+      213: -2631823735837915044
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_16
+  - first:
+      213: 2421982558804292300
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_17
+  - first:
+      213: -2206152695382476785
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_18
+  - first:
+      213: 6232734942684180513
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_19
+  - first:
+      213: -4540961925086946128
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_20
+  - first:
+      213: 7902081227617325363
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_21
+  - first:
+      213: -4755896016443001254
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_22
+  - first:
+      213: 7932676798101397220
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_23
+  - first:
+      213: 7455761141995228206
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_24
+  - first:
+      213: 4271780043645514377
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_25
+  - first:
+      213: -3245243254026721372
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_26
+  - first:
+      213: -630453166151618460
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_27
+  - first:
+      213: 1499003549510471495
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_28
+  - first:
+      213: -5322878067444430283
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_29
+  - first:
+      213: 3122541866150052242
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_30
+  - first:
+      213: -2801197127837829104
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_31
+  - first:
+      213: 5097495534620532180
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_32
+  - first:
+      213: -1046471360930217733
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_33
+  - first:
+      213: 3241142281798614208
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_34
+  - first:
+      213: 6925173122427394997
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_35
+  - first:
+      213: -6591820501689575889
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_36
+  - first:
+      213: 8781871394054228335
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_37
+  - first:
+      213: -7505218723907519281
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_38
+  - first:
+      213: -7495916613111732399
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_39
+  - first:
+      213: 2763023414413185839
+    second: colorful-level-selection-screen_1284-37627-removebg-preview_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 341
+        width: 181
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64c26d016bea26c40800000000000000
+      internalID: 5504153791589919814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 344
+        width: 141
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c3e1eab01c90d840800000000000000
+      internalID: 5246865161555403721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 353
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475d273213e2e1980800000000000000
+      internalID: -8566358652629101196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 245
+        width: 68
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52dcd9d1b3eab5d0800000000000000
+      internalID: -3045871844958875042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 311
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7510e0bc0b1c702b0800000000000000
+      internalID: -5618309045056306857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 311
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a159753f83dff3a30800000000000000
+      internalID: 4197351798775190810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 311
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef469732ad4d81e0800000000000000
+      internalID: -2194012084346925076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 311
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf90d723a0add5110800000000000000
+      internalID: 1251396008810449404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 311
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1763bd1d342c4b10800000000000000
+      internalID: 1966986982163965725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 311
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf5356beac7384710800000000000000
+      internalID: 1677652205867709947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 311
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be588973c558cec20800000000000000
+      internalID: 3237108863288772075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 311
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f656f77624ac93be0800000000000000
+      internalID: -1496943014570924689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 311
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70612b1e39b9dc900800000000000000
+      internalID: 706391776016078343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 313
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b6d7cf838aa00ca0800000000000000
+      internalID: -6052650417156270408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 312
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e208c7d199462d8e0800000000000000
+      internalID: -1670161903013560274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 313
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aafc3dd9253785330800000000000000
+      internalID: 3699833892557279146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 246
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5880f99142e97bd0800000000000000
+      internalID: -2631823735837915044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 246
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2b8b51e4c9c9120800000000000000
+      internalID: 2421982558804292300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_18
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 246
+        width: 68
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f08f47fefcb2261e0800000000000000
+      internalID: -2206152695382476785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_19
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 245
+        width: 68
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120fadd686f1f7650800000000000000
+      internalID: 6232734942684180513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_20
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 147
+        width: 68
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc5e9c20334bf0c0800000000000000
+      internalID: -4540961925086946128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_21
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 147
+        width: 67
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 331d96e6205d9ad60800000000000000
+      internalID: 7902081227617325363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_22
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 213
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a56383755c9affdb0800000000000000
+      internalID: -4755896016443001254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_23
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 213
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee11dcc487861e60800000000000000
+      internalID: 7932676798101397220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_24
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 214
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c49ce914f287760800000000000000
+      internalID: 7455761141995228206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_25
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 147
+        width: 67
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 982f71c1159684b30800000000000000
+      internalID: 4271780043645514377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_26
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 214
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a7210a547496f2d0800000000000000
+      internalID: -3245243254026721372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_27
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 214
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46033088f2e2047f0800000000000000
+      internalID: -630453166151618460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_28
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 214
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f0f9549c78dc410800000000000000
+      internalID: 1499003549510471495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_29
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 215
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ac14779965126b0800000000000000
+      internalID: -5322878067444430283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_30
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 215
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 291c828884f755b20800000000000000
+      internalID: 3122541866150052242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_31
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 162
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018b169bd062029d0800000000000000
+      internalID: -2801197127837829104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_32
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 147
+        width: 68
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd52395e21fdb640800000000000000
+      internalID: 5097495534620532180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_33
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 147
+        width: 68
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf0822877df2a71f0800000000000000
+      internalID: -1046471360930217733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_34
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 158
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ccfa15abb9dafc20800000000000000
+      internalID: 3241142281798614208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_35
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 49
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb1e5283482b1060800000000000000
+      internalID: 6925173122427394997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_36
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 116
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f26d7adbd262584a0800000000000000
+      internalID: -6591820501689575889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_37
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 50
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6944c921897fd970800000000000000
+      internalID: 8781871394054228335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_38
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 51
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fccb1efb55b18d790800000000000000
+      internalID: -7505218723907519281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_39
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 50
+        width: 68
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 157a6813e8729f790800000000000000
+      internalID: -7495916613111732399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: colorful-level-selection-screen_1284-37627-removebg-preview_40
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 49
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f235f22082b385620800000000000000
+      internalID: 2763023414413185839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      colorful-level-selection-screen_1284-37627-removebg-preview_0: 5504153791589919814
+      colorful-level-selection-screen_1284-37627-removebg-preview_1: 5246865161555403721
+      colorful-level-selection-screen_1284-37627-removebg-preview_10: 3237108863288772075
+      colorful-level-selection-screen_1284-37627-removebg-preview_11: -1496943014570924689
+      colorful-level-selection-screen_1284-37627-removebg-preview_12: 706391776016078343
+      colorful-level-selection-screen_1284-37627-removebg-preview_13: -6052650417156270408
+      colorful-level-selection-screen_1284-37627-removebg-preview_14: -1670161903013560274
+      colorful-level-selection-screen_1284-37627-removebg-preview_15: 3699833892557279146
+      colorful-level-selection-screen_1284-37627-removebg-preview_16: -2631823735837915044
+      colorful-level-selection-screen_1284-37627-removebg-preview_17: 2421982558804292300
+      colorful-level-selection-screen_1284-37627-removebg-preview_18: -2206152695382476785
+      colorful-level-selection-screen_1284-37627-removebg-preview_19: 6232734942684180513
+      colorful-level-selection-screen_1284-37627-removebg-preview_2: -8566358652629101196
+      colorful-level-selection-screen_1284-37627-removebg-preview_20: -4540961925086946128
+      colorful-level-selection-screen_1284-37627-removebg-preview_21: 7902081227617325363
+      colorful-level-selection-screen_1284-37627-removebg-preview_22: -4755896016443001254
+      colorful-level-selection-screen_1284-37627-removebg-preview_23: 7932676798101397220
+      colorful-level-selection-screen_1284-37627-removebg-preview_24: 7455761141995228206
+      colorful-level-selection-screen_1284-37627-removebg-preview_25: 4271780043645514377
+      colorful-level-selection-screen_1284-37627-removebg-preview_26: -3245243254026721372
+      colorful-level-selection-screen_1284-37627-removebg-preview_27: -630453166151618460
+      colorful-level-selection-screen_1284-37627-removebg-preview_28: 1499003549510471495
+      colorful-level-selection-screen_1284-37627-removebg-preview_29: -5322878067444430283
+      colorful-level-selection-screen_1284-37627-removebg-preview_3: -3045871844958875042
+      colorful-level-selection-screen_1284-37627-removebg-preview_30: 3122541866150052242
+      colorful-level-selection-screen_1284-37627-removebg-preview_31: -2801197127837829104
+      colorful-level-selection-screen_1284-37627-removebg-preview_32: 5097495534620532180
+      colorful-level-selection-screen_1284-37627-removebg-preview_33: -1046471360930217733
+      colorful-level-selection-screen_1284-37627-removebg-preview_34: 3241142281798614208
+      colorful-level-selection-screen_1284-37627-removebg-preview_35: 6925173122427394997
+      colorful-level-selection-screen_1284-37627-removebg-preview_36: -6591820501689575889
+      colorful-level-selection-screen_1284-37627-removebg-preview_37: 8781871394054228335
+      colorful-level-selection-screen_1284-37627-removebg-preview_38: -7505218723907519281
+      colorful-level-selection-screen_1284-37627-removebg-preview_39: -7495916613111732399
+      colorful-level-selection-screen_1284-37627-removebg-preview_4: -5618309045056306857
+      colorful-level-selection-screen_1284-37627-removebg-preview_40: 2763023414413185839
+      colorful-level-selection-screen_1284-37627-removebg-preview_5: 4197351798775190810
+      colorful-level-selection-screen_1284-37627-removebg-preview_6: -2194012084346925076
+      colorful-level-selection-screen_1284-37627-removebg-preview_7: 1251396008810449404
+      colorful-level-selection-screen_1284-37627-removebg-preview_8: 1966986982163965725
+      colorful-level-selection-screen_1284-37627-removebg-preview_9: 1677652205867709947
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
