@@ -12,6 +12,10 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private float dashTrailDuration = 0.3f;
     [SerializeField] private float dashTrailInterval = 0.03f;
 
+    [Header("Climbing")]
+    [Tooltip("Adjusts how fast the climb animation scrubs based on vertical velocity.")]
+    [SerializeField] private float climbAnimSpeedMultiplier = 0.5f;
+
     // References
     private PlayerController controller;
     private Animator anim;
@@ -23,6 +27,11 @@ public class PlayerAnimator : MonoBehaviour
     private static readonly int AnimJump = Animator.StringToHash("player_jump");
     private static readonly int AnimFall = Animator.StringToHash("player_fall");
     private static readonly int AnimDeath = Animator.StringToHash("player_death");
+    private static readonly int AnimClimb = Animator.StringToHash("player_climb");
+
+    // State Tracking
+    private bool wasOnWall;
+    private float currentClimbTime = 0f;
 
     private void Awake()
     {
@@ -33,7 +42,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to controller events
         controller.OnDeath += PlayDeathAnimation;
         controller.OnRevive += PlayReviveAnimation;
         controller.OnDash += StartDashTrail;
@@ -41,7 +49,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnDisable()
     {
-        // Unsubscribe to avoid memory leaks
         controller.OnDeath -= PlayDeathAnimation;
         controller.OnRevive -= PlayReviveAnimation;
         controller.OnDash -= StartDashTrail;
@@ -57,56 +64,68 @@ public class PlayerAnimator : MonoBehaviour
 
     private void UpdateSpriteFlipping()
     {
-        // Since the source sprite is drawn facing left:
-        // When FacingDir < 0 (moving left), flipX = false.
+        // Lock the sprite's direction while clinging to the wall
+        if (controller.IsOnWall) return;
+
         sr.flipX = controller.FacingDir < 0f;
     }
 
     private void UpdateAnimations()
     {
-        if (!controller.IsGrounded)
+        // 1. Handle Wall Climbing State (Manual Time Scrubbing)
+        if (controller.IsOnWall)
         {
-            if (controller.Velocity.y > 0f)
-                anim.Play(AnimJump);
+            anim.speed = 0f; // Freeze standard playback to avoid Unity errors
+
+            if (!wasOnWall)
+            {
+                currentClimbTime = 0f; // Start at frame 1 exactly
+            }
             else
-                anim.Play(AnimFall);
+            {
+                // Progress time based on velocity and loop it cleanly between 0 and 1
+                float timeDelta = controller.Velocity.y * climbAnimSpeedMultiplier * Time.deltaTime;
+                currentClimbTime = Mathf.Repeat(currentClimbTime + timeDelta, 1f);
+            }
+            
+            anim.Play(AnimClimb, 0, currentClimbTime);
         }
-        else if (Mathf.Abs(controller.Velocity.x) > 0.1f)
+        // 2. Handle Air / Ground States
+        else 
         {
-            anim.Play(AnimRun);
+            anim.speed = 1f; // Restore normal playback speed
+
+            if (!controller.IsGrounded)
+            {
+                if (controller.Velocity.y > 0f)
+                    anim.Play(AnimJump);
+                else
+                    anim.Play(AnimFall);
+            }
+            else if (Mathf.Abs(controller.Velocity.x) > 0.1f)
+            {
+                anim.Play(AnimRun);
+            }
+            else
+            {
+                anim.Play(AnimIdle);
+            }
         }
-        else
-        {
-            anim.Play(AnimIdle);
-        }
+
+        // Track wall state for the next frame
+        wasOnWall = controller.IsOnWall;
     }
 
     // =========================================================================
-    // EVENT HANDLERS
+    // EVENT HANDLERS & DASH TRAILS
     // =========================================================================
 
-    private void PlayDeathAnimation()
-    {
-        anim.Play(AnimDeath);
-    }
-
-    private void PlayReviveAnimation()
-    {
-        anim.Play(AnimIdle);
-    }
-
-    private void StartDashTrail()
-    {
-        StartCoroutine(DashTrailRoutine());
-    }
-
-    // =========================================================================
-    // DASH TRAILS
-    // =========================================================================
+    private void PlayDeathAnimation() => anim.Play(AnimDeath);
+    private void PlayReviveAnimation() => anim.Play(AnimIdle);
+    private void StartDashTrail() => StartCoroutine(DashTrailRoutine());
 
     private IEnumerator DashTrailRoutine()
     {
-        // Polling controller.IsDashing allows the trail to cleanly follow the physics logic
         while (controller.IsDashing)
         {
             CreateDashGhost();
