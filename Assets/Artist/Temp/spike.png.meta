@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 94fbd6c0ccba73543b19c03527716e5f
+guid: 39c393922926ade48bdcd1b9f8203f27
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4330694004763997605
-    second: player_jump_0
+      213: -1929834416523346238
+    second: spike_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 3
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_jump_0
+      name: spike_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 15
-        width: 15
-        height: 21
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a53fd89047b91c30800000000000000
-      internalID: 4330694004763997605
+      spriteID: 2ce7dc7a2d9d735e0800000000000000
+      internalID: -1929834416523346238
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9d0face6ac92b1c4fbf833a0122e6fd9
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -133,11 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      player_jump_0: 4330694004763997605
+      spike_0: -1929834416523346238
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
