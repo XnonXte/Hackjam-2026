@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class LevelSelectionManager : MonoBehaviour
@@ -7,10 +8,10 @@ public class LevelSelectionManager : MonoBehaviour
     [Header("Referensi")]
     public LevelButtonUI[] allLevelButtons; // Drag semua tombol level ke sini
     public LevelModalUI modalUI;            // Drag panel modal ke sini
+    public TextMeshProUGUI cokeCounter;
 
     private void Awake()
     {
-        // Singleton sederhana agar bisa dipanggil dari LevelButtonUI
         if (Instance == null) Instance = this;
     }
 
@@ -31,6 +32,8 @@ public class LevelSelectionManager : MonoBehaviour
             // Perintahkan tombol untuk mengatur sprite-nya
             btn.Setup(lvlData);
         }
+
+        cokeCounter.text = DataManager.GetTotalCollectedCokes().ToString();
     }
 
     // Fungsi jembatan: Tombol Level -> Manager -> Panel Modal

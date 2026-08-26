@@ -2644,6 +2644,7 @@ MonoBehaviour:
   - {fileID: 493567812}
   - {fileID: 1220669777}
   modalUI: {fileID: 326634921}
+  cokeCounter: {fileID: 805662951}
 --- !u!4 &683189276
 Transform:
   m_ObjectHideFlags: 0
