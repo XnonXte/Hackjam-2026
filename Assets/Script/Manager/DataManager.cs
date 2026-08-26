@@ -33,7 +33,9 @@ public static class DataManager
 
     private static string GetSavePath()
     {
-        return Application.persistentDataPath + "/savedata.json";
+        string path = Application.persistentDataPath + "/savedata.json";
+        Debug.Log("LOKASI SAVE DATA: " + path); // Tambahkan baris ini
+        return path;
     }
 
     public static void LoadData()
@@ -85,19 +87,6 @@ public static class DataManager
             }
         }
         return totalCokes;
-    }
-
-    // --- FITUR BARU: RESET DATA UNTUK TESTING ---
-    public static void ResetData()
-    {
-        string path = GetSavePath();
-        if (File.Exists(path))
-        {
-            File.Delete(path); // Menghapus file JSON fisik
-        }
-
-        currentData = new GameData(); // Mengosongkan data di memori
-        Debug.LogWarning("⚠️ Save Data telah di-reset dan dihapus!");
     }
 
     // --- MENYIMPAN PROGRESS SETELAH MENCAPAI GARIS AKHIR ---
@@ -155,5 +144,18 @@ public static class DataManager
         // 3. SIMPAN KE FILE JSON
         string finalJson = JsonUtility.ToJson(currentData, true);
         File.WriteAllText(GetSavePath(), finalJson);
+    }
+
+    // --- FITUR BARU: RESET DATA & GET PATH UNTUK TESTING ---
+    public static void ResetData()
+    {
+        string path = GetSavePath();
+        if (File.Exists(path))
+        {
+            File.Delete(path); // Menghapus file JSON fisik
+        }
+
+        currentData = new GameData(); // Mengosongkan data di memori
+        Debug.LogWarning("⚠️ Save Data telah di-reset dan dihapus!");
     }
 }

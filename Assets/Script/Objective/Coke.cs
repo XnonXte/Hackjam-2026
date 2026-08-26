@@ -14,16 +14,17 @@ public class CokeController : MonoBehaviour
 
     private void Start()
     {
-        // Record the initial position to base the mathematical floating on
         startPos = transform.position;
-
-        // Ensure the collider is set as a trigger so it doesn't block player movement
         GetComponent<Collider2D>().isTrigger = true;
+
+        if (DataManager.IsCokeAlreadyCollected(GameManager.Instance.levelID, cokeID))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void Update()
     {
-        // Calculate the new Y position using a Sine wave
         float newY = startPos.y + Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
         transform.position = new Vector3(startPos.x, newY, startPos.z);
     }
@@ -32,7 +33,6 @@ public class CokeController : MonoBehaviour
     {
         PlayerController player = collision.GetComponent<PlayerController>();
 
-        // Ensure it's the player and they aren't dead before collecting
         if (player != null && !player.IsDead)
         {
             GameSessionManager.Instance.AddCoke(cokeID);

@@ -18,6 +18,7 @@ public class Sandwich : MonoBehaviour
 
     private void Start()
     {
+        currentLevelID = GameManager.Instance.levelID;
         startPos = transform.position;
         GetComponent<Collider2D>().isTrigger = true;
     }
@@ -64,7 +65,7 @@ public class Sandwich : MonoBehaviour
             gameObject.SetActive(false); // Optional: sembunyikan sandwich setelah level selesai
 
             // 5. Load Scene berikutnya / kembali ke Level Selection
-            // SceneManager.LoadScene("LevelSelection");
+            GameManager.Instance.LevelComplete();
         }
     }
 }
