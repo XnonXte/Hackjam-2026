@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Collectible : MonoBehaviour
+public class CokePlaceholder : MonoBehaviour
 {
     [Header("Floating Animation")]
     [SerializeField] private float floatAmplitude = 0.2f;
