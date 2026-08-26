@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Handles player death and respawning.
 /// </summary>
-[RequireComponent(typeof(Rigidbody2D), typeof(PlayerController))]
+[RequireComponent(typeof(Rigidbody2D), typeof(PlayerController), typeof(Collider2D))]
 public class DeathManager : MonoBehaviour
 {
     [Header("Respawn Settings")]
@@ -17,10 +17,10 @@ public class DeathManager : MonoBehaviour
     [SerializeField] private LayerMask hazardLayer;
 
     [Header("Camera Bounds")]
-    [SerializeField] private bool dieOnCameraExit = true;
-    [SerializeField] private float outOfBoundsMargin = 0.05f;
+    [SerializeField] private bool dieOnCameraBottom = true;
 
     private Rigidbody2D rb;
+    private Collider2D col;
     private PlayerController player;
     private Camera mainCamera;
     private bool isRespawning = false;
@@ -28,6 +28,7 @@ public class DeathManager : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         player = GetComponent<PlayerController>();
     }
 
@@ -46,22 +47,22 @@ public class DeathManager : MonoBehaviour
 
     private void Update()
     {
-        if (dieOnCameraExit && !isRespawning)
+        if (dieOnCameraBottom && !isRespawning)
         {
-            CheckCameraBounds();
+            CheckBottomBoundary();
         }
     }
 
-    private void CheckCameraBounds()
+    private void CheckBottomBoundary()
     {
         if (mainCamera == null) return;
 
-        Vector3 viewportPos = mainCamera.WorldToViewportPoint(transform.position);
-        float minBound = 0f - outOfBoundsMargin;
-        float maxBound = 1f + outOfBoundsMargin;
+        // Get the bottom-left world coordinate of the camera to find the bottom Y edge
+        Vector3 cameraBottomLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane));
 
-        if (viewportPos.x < minBound || viewportPos.x > maxBound || 
-            viewportPos.y < minBound || viewportPos.y > maxBound)
+        // Bottom Kill Line
+        // Checks if the absolute bottom edge of the player's collider goes below the camera's bottom edge
+        if (col.bounds.min.y <= cameraBottomLeft.y)
         {
             Die();
         }
@@ -100,7 +101,6 @@ public class DeathManager : MonoBehaviour
     {
         isRespawning = true;
         
-        // Now uses the inspector variable instead of a hardcoded value
         yield return new WaitForSeconds(respawnDelay);
 
         if (currentSpawnPoint != null)

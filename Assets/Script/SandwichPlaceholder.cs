@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Objective : MonoBehaviour
+public class SandwichPlaceholder : MonoBehaviour
 {
     [Header("Floating Animation")]
     [SerializeField] private float floatAmplitude = 0.25f;

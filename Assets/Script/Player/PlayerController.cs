@@ -42,7 +42,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Wall and ledge checks are inferred from the box collider bounds; only the ground check needs a Transform.")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float checkRadius = 0.15f;
+    
+    [Tooltip("Standard surfaces that can be stood on AND climbed.")]
     [SerializeField] private LayerMask groundLayer;
+    [Tooltip("Surfaces that can be stood on but CANNOT be climbed (e.g. Ice walls).")]
+    [SerializeField] private LayerMask unclimbableLayer;
 
     // =========================================================================
     // INSPECTOR TUNABLES
@@ -297,13 +301,12 @@ public class PlayerController : MonoBehaviour
         if (wallCoyoteTimer > 0f) wallCoyoteTimer -= Time.deltaTime;
     }
 
-    private bool CheckGround() => groundCheck != null && Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+    // CHECK BOTH LAYERS for grounding (You can stand on unclimbable blocks)
+    private bool CheckGround() => groundCheck != null && Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer | unclimbableLayer);
 
-    // Wall checks: center-left / center-right of the box collider's world bounds.
+    // ONLY CHECK GROUNDLAYER for walls and ledges (Ignores unclimbable blocks for grabbing/climbing)
     private bool CheckWallLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.center.y), checkRadius, groundLayer);
     private bool CheckWallRight() => Physics2D.OverlapCircle(new Vector2(col.bounds.max.x, col.bounds.center.y), checkRadius, groundLayer);
-
-    // Ledge checks: top-left / top-right of the box collider's world bounds.
     private bool CheckLedgeLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.max.y), checkRadius, groundLayer);
     private bool CheckLedgeRight() => Physics2D.OverlapCircle(new Vector2(col.bounds.max.x, col.bounds.max.y), checkRadius, groundLayer);
 
@@ -317,8 +320,6 @@ public class PlayerController : MonoBehaviour
         {
             wallDir = isTouchingWallRight ? 1f : -1f;
 
-            // Only on the first frame we grab the wall: face into it and remove any gap
-            // between the collider and the wall surface so the sprite doesn't visually float.
             if (!wasOnWall)
             {
                 SetFacing(wallDir);
@@ -331,15 +332,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Repositions the player horizontally so its collider is flush against the wall,
-    /// closing whatever gap existed inside the check-radius tolerance of the wall checks.
-    /// </summary>
     private void SnapToWall(float dir)
     {
         Bounds b = col.bounds;
-        float castDistance = checkRadius + 0.05f; // small buffer beyond the overlap check radius
+        float castDistance = checkRadius + 0.05f; 
 
+        // Only snap to the climbable groundLayer
         RaycastHit2D hit = Physics2D.Raycast(
             new Vector2(dir > 0f ? b.max.x : b.min.x, b.center.y),
             Vector2.right * dir,
@@ -350,7 +348,7 @@ public class PlayerController : MonoBehaviour
         {
             float halfWidth = b.extents.x;
             float targetCenterX = hit.point.x - dir * halfWidth;
-            float delta = targetCenterX - b.center.x; // works regardless of collider offset from the transform
+            float delta = targetCenterX - b.center.x; 
             transform.position += new Vector3(delta, 0f, 0f);
         }
     }
@@ -453,9 +451,10 @@ public class PlayerController : MonoBehaviour
         float dir = Mathf.Sign(rb.linearVelocity.x);
         float side = dir > 0f ? b.max.x : b.min.x;
 
+        // Allow corner-correction (ledge popping) on both climbable and unclimbable ceilings
         RaycastHit2D hit = Physics2D.Raycast(
             new Vector2(side, b.min.y + 0.01f) + Vector2.up * ledgePopHeight,
-            Vector2.down, ledgePopHeight, groundLayer);
+            Vector2.down, ledgePopHeight, groundLayer | unclimbableLayer);
 
         if (hit.collider != null)
         {
@@ -473,29 +472,24 @@ public class PlayerController : MonoBehaviour
     // =========================================================================
     private void OnDrawGizmosSelected()
     {
-        // 'col' is only assigned by Awake, which doesn't run in edit mode, so fall back to a live lookup.
         Collider2D previewCol = col != null ? col : GetComponent<Collider2D>();
         if (previewCol == null) return;
 
         Bounds b = previewCol.bounds;
 
-        // Collider bounds outline
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(b.center, b.size);
 
-        // Ground check (still a manually placed Transform)
         if (groundCheck != null)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
         }
 
-        // Wall checks: center-left / center-right of the bounds
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(new Vector3(b.min.x, b.center.y, b.center.z), checkRadius);
         Gizmos.DrawWireSphere(new Vector3(b.max.x, b.center.y, b.center.z), checkRadius);
 
-        // Ledge checks: top-left / top-right of the bounds
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(new Vector3(b.min.x, b.max.y, b.center.z), checkRadius);
         Gizmos.DrawWireSphere(new Vector3(b.max.x, b.max.y, b.center.z), checkRadius);

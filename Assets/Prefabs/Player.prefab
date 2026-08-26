@@ -256,7 +256,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   dieOnCameraExit: 1
-  outOfBoundsMargin: 0
+  outOfBoundsMargin: 0.05
 --- !u!114 &2761575315178518714
 MonoBehaviour:
   m_ObjectHideFlags: 0
