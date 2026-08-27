@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
     public int levelID;
 
-    [Header("References")]
-    public InputActionReference pauseAction;
-
     private void Awake()
     {
         if (Instance == null)
@@ -24,14 +21,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (pauseAction.action.WasPressedThisFrame() && !isGameOver)
-        {
-            TogglePause();
         }
     }
 
@@ -50,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void LevelComplete()
     {
         isGameOver = true;
+        Time.timeScale = 0f;
 
         // Beritahu UI untuk menampilkan panel menang
         if (GameUI.Instance != null)
@@ -79,7 +69,7 @@ public class GameManager : MonoBehaviour
         if (GameSessionManager.Instance != null) GameSessionManager.Instance.ResetSession();
 
         int nextLevelTarget = levelID + 1;
-        string nextSceneName = "Level_" + nextLevelTarget;
+        string nextSceneName = "Level " + nextLevelTarget;
 
         if (Application.CanStreamedLevelBeLoaded(nextSceneName))
         {

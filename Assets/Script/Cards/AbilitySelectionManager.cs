@@ -13,7 +13,7 @@ public class AbilitySelectionManager : MonoBehaviour
     public PlayerController player;
     public GameObject selectionMenuPanel;
     public AbilityCard[] allCards;
-    
+
     [Header("UI Text")]
     public TextMeshProUGUI instructionText;
 
@@ -37,7 +37,7 @@ public class AbilitySelectionManager : MonoBehaviour
 
     public void HandleCardClick(AbilityCard clickedCard)
     {
-        if (isStartingLevel) return; 
+        if (isStartingLevel) return;
 
         if (clickedCard.IsSelected())
         {
@@ -54,7 +54,7 @@ public class AbilitySelectionManager : MonoBehaviour
                 StartCoroutine(ApplySacrificesAndStart());
             }
         }
-        
+
         UpdateInstructionText();
     }
 
@@ -70,7 +70,7 @@ public class AbilitySelectionManager : MonoBehaviour
             }
             else
             {
-                instructionText.text = ""; 
+                instructionText.text = "";
             }
         }
     }
@@ -80,7 +80,7 @@ public class AbilitySelectionManager : MonoBehaviour
         isStartingLevel = true;
         UpdateInstructionText();
 
-        yield return new WaitForSeconds(0.3f); 
+        yield return new WaitForSeconds(0.3f);
 
         List<string> chosenSacrifices = new List<string>();
         foreach (AbilityCard card in sacrificedCards)
@@ -88,12 +88,16 @@ public class AbilitySelectionManager : MonoBehaviour
             chosenSacrifices.Add(card.abilityName);
         }
 
-        if (player != null) 
+        if (player != null)
         {
             player.ApplySacrifices(chosenSacrifices);
-            player.isInputLocked = false; 
+            player.isInputLocked = false;
         }
 
-        if (selectionMenuPanel != null) selectionMenuPanel.SetActive(false);
+        if (selectionMenuPanel != null)
+        {
+            selectionMenuPanel.SetActive(false);
+            GameUI.Instance.ShowGamePanel();
+        }
     }
 }

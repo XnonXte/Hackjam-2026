@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8070908600013872902}
   - component: {fileID: 6630760187576770127}
   - component: {fileID: 2173153919907724245}
-  - component: {fileID: 1991233689088253920}
+  - component: {fileID: 4008155001509483359}
   m_Layer: 0
   m_Name: Sandwich
   m_TagString: Untagged
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_Sprite: {fileID: -6405189625795485184, guid: 4d763e04205241d4ca4f1acbc7940ce9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.3125, y: 1.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1991233689088253920
+--- !u!114 &4008155001509483359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 642993802584954371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bc72fed24651b42b68415f8d54b1a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2016158923fc63e4b80ce795913b75a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Objective
+  m_EditorClassIdentifier: Assembly-CSharp::Sandwich
+  currentLevelID: 0
   floatAmplitude: 0.25
   floatFrequency: 2
+  collectSound: {fileID: 8300000, guid: 643dc920ea41e3a4fbc00f00b4898d8e, type: 3}

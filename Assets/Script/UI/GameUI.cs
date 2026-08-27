@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
@@ -10,15 +11,26 @@ public class GameUI : MonoBehaviour
     public GameObject gamePanel;
     public GameObject levelCompletePanel;
 
+    [Header("References")]
+    public InputActionReference pauseAction;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
     }
 
+    private void Update()
+    {
+        if (pauseAction.action.WasPressedThisFrame() && !GameManager.Instance.isGameOver)
+        {
+            GameManager.Instance.TogglePause();
+        }
+    }
+
     private void Start()
     {
         pausePanel.SetActive(false);
-        gamePanel.SetActive(true);
+        gamePanel.SetActive(false);
         levelCompletePanel.SetActive(false);
     }
 
@@ -34,6 +46,13 @@ public class GameUI : MonoBehaviour
         levelCompletePanel.SetActive(true);
         gamePanel.SetActive(false);
         pausePanel.SetActive(false); // Pastikan pause tertutup
+    }
+
+    public void ShowGamePanel()
+    {
+        levelCompletePanel.SetActive(false);
+        gamePanel.SetActive(true);
+        pausePanel.SetActive(false);
     }
 
     // --- HANDLE BUTTON CLICKS ---

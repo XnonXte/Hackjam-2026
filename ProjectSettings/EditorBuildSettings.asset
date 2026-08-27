@@ -7,15 +7,48 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/TestingScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+    guid: 9a4e95a61bffcfa43861a02c63cdc419
+  - enabled: 0
     path: Assets/Scenes/Faiz's Env/TestingScene2.unity
     guid: f9814414bd938ec489a0c16e5251086d
-  - enabled: 1
-    path: Assets/Scenes/Faiz's Env/Level_1.unity
+  - enabled: 0
+    path: Assets/Scenes/Faiz's Env/Level 1 Temp.unity
     guid: 16c1779f21a6eed459828dfeb69c235f
-  - enabled: 1
-    path: Assets/Scenes/Faiz's Env/Level_2.unity
+  - enabled: 0
+    path: Assets/Scenes/Faiz's Env/Level 2 Temp.unity
     guid: ac4a556abf70425459bb0f0ed989d9a7
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 1.unity
+    guid: 9e5a4bc29f10fc4409575d92e662b06a
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 2.unity
+    guid: d532acb958ca157429a31a31fb2434e1
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 3.unity
+    guid: 30bf504a791879f4e98b975359aaeb44
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 4.unity
+    guid: 191763f1ed3b1eb4481187c318e8b6dd
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 5.unity
+    guid: f4f6ac4ce8e16f44fbf021c0cbfa975f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 6.unity
+    guid: 5b2fa5bf8ebc3634f914a306d10d4591
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 7.unity
+    guid: 7b631dfba63ce1c43aa48f14151f2afc
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 8.unity
+    guid: cc06912f42ffe324ba0415fcf52ab526
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 9.unity
+    guid: dc9300f2adbce654fabd87b36b097b2f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level 10.unity
+    guid: fe8503f1daa7ae743bda285e6d1c31f8
+  - enabled: 1
+    path: Assets/Scenes/Faiz's Env/MainMenu.unity
+    guid: a3e0f9cdf2dc38e4da45e5dffb77554c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -41,6 +41,6 @@ public class LevelModalUI : MonoBehaviour
     {
         GameManager.Instance.levelID = selectedLevelID;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level_" + selectedLevelID);
+        SceneManager.LoadScene("Level " + selectedLevelID);
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3471679448398544397}
   - component: {fileID: 8902956389669798881}
   - component: {fileID: 9147453720149733556}
-  - component: {fileID: 7097665806910222807}
+  - component: {fileID: 8524326066679791100}
   m_Layer: 0
   m_Name: Coke
   m_TagString: Untagged
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.2705882, b: 0, a: 1}
+  m_Sprite: {fileID: -3289453322174803879, guid: a579dd8130f197b4aa1ae4e18b75175a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,19 +127,19 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.000082194805, y: -0.0002707541}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.125, y: 1.125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.17242816, y: 0.17169008}
   m_EdgeRadius: 0
---- !u!114 &7097665806910222807
+--- !u!114 &8524326066679791100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 355513842662464726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7f23695fc87ab479c019ce967feca7, type: 3}
+  m_Script: {fileID: 11500000, guid: ed14dcdfa1a70d14e80d219d4ccf8f27, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Collectible
+  m_EditorClassIdentifier: Assembly-CSharp::CokeController
   floatAmplitude: 0.2
   floatFrequency: 3
+  collectSound: {fileID: 8300000, guid: b74640ec35abf204c92798d22efae1ff, type: 3}
+  cokeID: 

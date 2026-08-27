@@ -9,6 +9,9 @@ public class CokeController : MonoBehaviour
     [SerializeField] private float floatAmplitude = 0.2f;
     [SerializeField] private float floatFrequency = 3f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip collectSound;
+
     private Vector3 startPos;
     public string cokeID;
 
@@ -35,9 +38,12 @@ public class CokeController : MonoBehaviour
 
         if (player != null && !player.IsDead)
         {
+            if (collectSound != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFXAtPosition(collectSound, transform.position);
+            }
             GameSessionManager.Instance.AddCoke(cokeID);
             gameObject.SetActive(false);
-            // AudioManager.Play("GetItem");
         }
     }
 }

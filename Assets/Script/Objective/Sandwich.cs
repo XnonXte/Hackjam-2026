@@ -13,6 +13,9 @@ public class Sandwich : MonoBehaviour
     [SerializeField] private float floatAmplitude = 0.25f;
     [SerializeField] private float floatFrequency = 2f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip collectSound;
+
     private Vector3 startPos;
     private bool isCompleted = false;
 
@@ -43,15 +46,14 @@ public class Sandwich : MonoBehaviour
         {
             isCompleted = true;
 
-            // --- LOGIKA SAVE SYSTEM & END LEVEL ---
+            if (collectSound != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFXAtPosition(collectSound, transform.position);
+            }
 
-            // 1. Ambil waktu penyelesaian (dari scene mulai sampai menyentuh objective)
             float finishTime = Time.timeSinceLevelLoad;
 
-            // 2. Ambil list Coke dari sesi sementara ini
             List<string> cokesObtained = GameSessionManager.Instance.collectedCokesInSession;
-
-            // 3. Simpan progress ke JSON melalui DataManager
             DataManager.SaveLevelProgress(currentLevelID, true, finishTime, cokesObtained);
 
             // Log untuk keperluan Debugging
@@ -59,12 +61,8 @@ public class Sandwich : MonoBehaviour
             Debug.Log($"Best Time Baru: {finishTime.ToString("F2")} detik.");
             Debug.Log($"Coke Diselamatkan: {string.Join(", ", cokesObtained)}");
 
-            // 4. Bersihkan memori sesi sementara agar siap untuk level selanjutnya
             GameSessionManager.Instance.ResetSession();
-
-            gameObject.SetActive(false); // Optional: sembunyikan sandwich setelah level selesai
-
-            // 5. Load Scene berikutnya / kembali ke Level Selection
+            gameObject.SetActive(false);
             GameManager.Instance.LevelComplete();
         }
     }
