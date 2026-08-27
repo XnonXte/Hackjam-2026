@@ -61,11 +61,17 @@ public class PlayerAnimator : MonoBehaviour
         UpdateSpriteFlipping();
         UpdateAnimations();
     }
-
     private void UpdateSpriteFlipping()
     {
-        // Lock the sprite's direction while clinging to the wall
-        if (controller.IsOnWall) return;
+        if (controller.IsOnWall)
+        {
+            // Set direction once on the initial grab frame, then lock it
+            if (!wasOnWall)
+            {
+                sr.flipX = controller.FacingDir < 0f;
+            }
+            return;
+        }
 
         sr.flipX = controller.FacingDir < 0f;
     }

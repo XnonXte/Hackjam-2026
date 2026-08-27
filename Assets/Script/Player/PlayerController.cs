@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Celeste-inspired PlayerController — Handles purely physics, input, and state.
-/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public event Action OnDash;
 
     // =========================================================================
-    // PUBLIC STATE (Read-only for Animator / other scripts)
+    // PUBLIC STATE
     // =========================================================================
     public bool IsGrounded => isGrounded;
     public bool IsDead { get; private set; } = false;
@@ -25,6 +23,16 @@ public class PlayerController : MonoBehaviour
     public float FacingDir => facingDir;
     public Vector2 Velocity => rb.linearVelocity;
     public bool IsOnWall => isOnWall;
+    
+    [HideInInspector] public bool isInputLocked = false;
+
+    // =========================================================================
+    // ABILITIES
+    // =========================================================================
+    [Header("Abilities")]
+    public bool canJump = true;
+    public bool canDash = true;
+    public bool canWallClimb = true;
 
     // =========================================================================
     // INPUT ACTION REFERENCES
@@ -35,22 +43,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference dashAction;
     [SerializeField] private InputActionReference grabAction;
 
-    // =========================================================================
-    // CHECK POINTS
-    // =========================================================================
     [Header("Check Points")]
-    [Tooltip("Wall and ledge checks are inferred from the box collider bounds; only the ground check needs a Transform.")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float checkRadius = 0.15f;
-    
-    [Tooltip("Standard surfaces that can be stood on AND climbed.")]
     [SerializeField] private LayerMask groundLayer;
-    [Tooltip("Surfaces that can be stood on but CANNOT be climbed (e.g. Ice walls).")]
     [SerializeField] private LayerMask unclimbableLayer;
 
-    // =========================================================================
-    // INSPECTOR TUNABLES
-    // =========================================================================
     [Header("Movement")]
     [SerializeField] private float maxSpeed = 9f;
     [SerializeField] private float groundAcceleration = 80f;
@@ -68,8 +66,6 @@ public class PlayerController : MonoBehaviour
     [Header("Coyote Time & Buffers")]
     [SerializeField] private float coyoteTime = 0.12f;
     [SerializeField] private float jumpBufferTime = 0.12f;
-
-    [Header("Corner Correction & Ledges")]
     [SerializeField] private float ledgePopHeight = 0.3f;
 
     [Header("Dashing")]
@@ -87,9 +83,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallCoyoteTime = 0.1f;
     [SerializeField] private Vector2 ledgeClimbPush = new Vector2(6f, 10f);
 
-    // =========================================================================
-    // PRIVATE STATE
-    // =========================================================================
     private Rigidbody2D rb;
     private Collider2D col;
 
@@ -104,19 +97,12 @@ public class PlayerController : MonoBehaviour
     private float moveInput, verticalInput;
     private bool grabHeld;
 
-    // =========================================================================
-    // UNITY LIFECYCLE
-    // =========================================================================
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
-        PhysicsMaterial2D noFriction = new PhysicsMaterial2D("NoFriction")
-        {
-            friction = 0f,
-            bounciness = 0f
-        };
+        PhysicsMaterial2D noFriction = new PhysicsMaterial2D("NoFriction") { friction = 0f, bounciness = 0f };
         rb.sharedMaterial = noFriction;
         col.sharedMaterial = noFriction;
 
@@ -153,16 +139,20 @@ public class PlayerController : MonoBehaviour
     {
         if (IsDead) return;
 
+        if (isInputLocked)
+        {
+            moveInput = 0f;
+            verticalInput = 0f;
+            grabHeld = false;
+            return;
+        }
+
         Vector2 raw = moveAction.action.ReadValue<Vector2>();
         moveInput = raw.x;
         verticalInput = raw.y;
-        grabHeld = grabAction.action.IsPressed();
+        grabHeld = canWallClimb && grabAction.action.IsPressed();
 
-        // Update facing direction logic (Animator will read this to flip sprite)
-        if (Mathf.Abs(moveInput) > 0.1f)
-        {
-            SetFacing(Mathf.Sign(moveInput));
-        }
+        if (Mathf.Abs(moveInput) > 0.1f) SetFacing(Mathf.Sign(moveInput));
 
         TickTimers();
     }
@@ -207,41 +197,60 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // =========================================================================
-    // CORE SYSTEMS
-    // =========================================================================
-    public void Die()
+    public void ApplySacrifices(List<string> sacrificedAbilities)
     {
-        if (IsDead) return;
-        IsDead = true;
-        
-        Time.timeScale = 1f; 
-        rb.linearVelocity = Vector2.zero;
-        rb.gravityScale = 0f;
-        
-        OnDeath?.Invoke();
+        canJump = !sacrificedAbilities.Contains("Jump");
+        canDash = !sacrificedAbilities.Contains("Dash");
+        canWallClimb = !sacrificedAbilities.Contains("WallClimb");
     }
 
-    public void Revive()
-    {
-        IsDead = false;
-        rb.gravityScale = gravityScale;
-        hasDash = true;
-        isDashing = false;
-        
-        OnRevive?.Invoke();
-    }
+    public void Die()
+{
+    if (IsDead) return;
+    IsDead = true;
+    Time.timeScale = 1f; 
+
+    // Stop active coroutines (prevents DashRoutine from continuing to set velocity)
+    StopAllCoroutines();
+    
+    // Reset states
+    isDashing = false;
+    isOnWall = false;
+    isJumping = false;
+
+    // Freeze physics completely
+    rb.linearVelocity = Vector2.zero;
+    rb.angularVelocity = 0f;
+    rb.gravityScale = 0f;
+    rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+    OnDeath?.Invoke();
+}
+
+public void Revive()
+{
+    IsDead = false;
+    
+    // Unfreeze position, maintain rotation lock
+    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    rb.gravityScale = gravityScale;
+    
+    hasDash = true;
+    isDashing = false;
+    
+    OnRevive?.Invoke();
+}
 
     private void OnJumpStarted(InputAction.CallbackContext ctx)
     {
-        if (IsDead) return;
+        if (IsDead || !canJump || isInputLocked) return;
         jumpHeld = true;
         jumpBufferTimer = jumpBufferTime;
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx)
     {
-        if (IsDead) return;
+        if (IsDead || !canJump || isInputLocked) return;
         jumpHeld = false;
 
         if (isJumping && !isOnWall && rb.linearVelocity.y > 0f)
@@ -253,7 +262,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDashStarted(InputAction.CallbackContext ctx)
     {
-        if (IsDead || !hasDash || isDashing) return;
+        if (IsDead || !hasDash || isDashing || !canDash || isInputLocked) return;
         float dir = Mathf.Abs(moveInput) > 0.1f ? Mathf.Sign(moveInput) : facingDir;
         StartCoroutine(DashRoutine(dir));
     }
@@ -263,8 +272,7 @@ public class PlayerController : MonoBehaviour
         hasDash = false;
         isDashing = true;
         SetFacing(dir);
-
-        OnDash?.Invoke(); // Tells the animator to start the dash trail
+        OnDash?.Invoke(); 
 
         if (dashHitStop > 0f)
         {
@@ -279,10 +287,16 @@ public class PlayerController : MonoBehaviour
             : new Vector2(dir * dashSpeed, rb.linearVelocity.y);
 
         coyoteTimer = 0f;
-
         float elapsed = 0f;
         while (elapsed < dashDuration)
         {
+            // Continuously refresh dash if grounded during dash (Celeste style)
+            isGrounded = CheckGround();
+            if (isGrounded)
+            {
+                hasDash = true;
+            }
+
             rb.linearVelocity = new Vector2(dir * dashSpeed, dashZerosVerticalVelocity ? 0f : rb.linearVelocity.y);
             elapsed += Time.deltaTime;
             yield return null;
@@ -292,6 +306,11 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(vx, rb.linearVelocity.y);
         rb.gravityScale = gravityScale;
         isDashing = false;
+
+        if (CheckGround())
+        {
+            hasDash = true;
+        }
     }
 
     private void TickTimers()
@@ -301,10 +320,7 @@ public class PlayerController : MonoBehaviour
         if (wallCoyoteTimer > 0f) wallCoyoteTimer -= Time.deltaTime;
     }
 
-    // CHECK BOTH LAYERS for grounding (You can stand on unclimbable blocks)
     private bool CheckGround() => groundCheck != null && Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer | unclimbableLayer);
-
-    // ONLY CHECK GROUNDLAYER for walls and ledges (Ignores unclimbable blocks for grabbing/climbing)
     private bool CheckWallLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.center.y), checkRadius, groundLayer);
     private bool CheckWallRight() => Physics2D.OverlapCircle(new Vector2(col.bounds.max.x, col.bounds.center.y), checkRadius, groundLayer);
     private bool CheckLedgeLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.max.y), checkRadius, groundLayer);
@@ -337,7 +353,6 @@ public class PlayerController : MonoBehaviour
         Bounds b = col.bounds;
         float castDistance = checkRadius + 0.05f; 
 
-        // Only snap to the climbable groundLayer
         RaycastHit2D hit = Physics2D.Raycast(
             new Vector2(dir > 0f ? b.max.x : b.min.x, b.center.y),
             Vector2.right * dir,
@@ -451,7 +466,6 @@ public class PlayerController : MonoBehaviour
         float dir = Mathf.Sign(rb.linearVelocity.x);
         float side = dir > 0f ? b.max.x : b.min.x;
 
-        // Allow corner-correction (ledge popping) on both climbable and unclimbable ceilings
         RaycastHit2D hit = Physics2D.Raycast(
             new Vector2(side, b.min.y + 0.01f) + Vector2.up * ledgePopHeight,
             Vector2.down, ledgePopHeight, groundLayer | unclimbableLayer);
@@ -467,31 +481,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // =========================================================================
-    // GIZMOS
-    // =========================================================================
     private void OnDrawGizmosSelected()
     {
         Collider2D previewCol = col != null ? col : GetComponent<Collider2D>();
         if (previewCol == null) return;
 
         Bounds b = previewCol.bounds;
-
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(b.center, b.size);
-
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
-        }
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(new Vector3(b.min.x, b.center.y, b.center.z), checkRadius);
-        Gizmos.DrawWireSphere(new Vector3(b.max.x, b.center.y, b.center.z), checkRadius);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(new Vector3(b.min.x, b.max.y, b.center.z), checkRadius);
-        Gizmos.DrawWireSphere(new Vector3(b.max.x, b.max.y, b.center.z), checkRadius);
     }
 }
