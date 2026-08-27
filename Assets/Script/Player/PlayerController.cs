@@ -8,11 +8,13 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // =========================================================================
-    // EVENTS FOR ANIMATOR
+    // EVENTS FOR ANIMATOR & AUDIO
     // =========================================================================
     public event Action OnDeath;
     public event Action OnRevive;
     public event Action OnDash;
+    public event Action OnJump; 
+    public event Action OnLedgeJump; // <-- Added event for ledge jumping / climbing
 
     // =========================================================================
     // PUBLIC STATE
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [Header("Check Points")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float checkRadius = 0.15f;
+    [SerializeField] private float ledgeCheckOffset = 0.15f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask unclimbableLayer;
 
@@ -205,41 +208,37 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Die()
-{
-    if (IsDead) return;
-    IsDead = true;
-    Time.timeScale = 1f; 
+    {
+        if (IsDead) return;
+        IsDead = true;
+        Time.timeScale = 1f; 
 
-    // Stop active coroutines (prevents DashRoutine from continuing to set velocity)
-    StopAllCoroutines();
-    
-    // Reset states
-    isDashing = false;
-    isOnWall = false;
-    isJumping = false;
+        StopAllCoroutines();
+        
+        isDashing = false;
+        isOnWall = false;
+        isJumping = false;
 
-    // Freeze physics completely
-    rb.linearVelocity = Vector2.zero;
-    rb.angularVelocity = 0f;
-    rb.gravityScale = 0f;
-    rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.gravityScale = 0f;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-    OnDeath?.Invoke();
-}
+        OnDeath?.Invoke();
+    }
 
-public void Revive()
-{
-    IsDead = false;
-    
-    // Unfreeze position, maintain rotation lock
-    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-    rb.gravityScale = gravityScale;
-    
-    hasDash = true;
-    isDashing = false;
-    
-    OnRevive?.Invoke();
-}
+    public void Revive()
+    {
+        IsDead = false;
+        
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.gravityScale = gravityScale;
+        
+        hasDash = true;
+        isDashing = false;
+        
+        OnRevive?.Invoke();
+    }
 
     private void OnJumpStarted(InputAction.CallbackContext ctx)
     {
@@ -290,7 +289,6 @@ public void Revive()
         float elapsed = 0f;
         while (elapsed < dashDuration)
         {
-            // Continuously refresh dash if grounded during dash (Celeste style)
             isGrounded = CheckGround();
             if (isGrounded)
             {
@@ -323,8 +321,8 @@ public void Revive()
     private bool CheckGround() => groundCheck != null && Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer | unclimbableLayer);
     private bool CheckWallLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.center.y), checkRadius, groundLayer);
     private bool CheckWallRight() => Physics2D.OverlapCircle(new Vector2(col.bounds.max.x, col.bounds.center.y), checkRadius, groundLayer);
-    private bool CheckLedgeLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.max.y), checkRadius, groundLayer);
-    private bool CheckLedgeRight() => Physics2D.OverlapCircle(new Vector2(col.bounds.max.x, col.bounds.max.y), checkRadius, groundLayer);
+    private bool CheckLedgeLeft() => Physics2D.OverlapCircle(new Vector2(col.bounds.min.x, col.bounds.max.y - ledgeCheckOffset), checkRadius, groundLayer);
+    private bool CheckLedgeRight() => Physics2D.OverlapCircle(new Vector2(col.bounds.max.x, col.bounds.max.y - ledgeCheckOffset), checkRadius, groundLayer);
 
     private void EvaluateWallContact()
     {
@@ -389,6 +387,8 @@ public void Revive()
         isOnWall = false;
         transform.position += new Vector3(dir * 0.15f, 0.2f, 0f);
         rb.linearVelocity = new Vector2(dir * ledgeClimbPush.x, ledgeClimbPush.y);
+        
+        OnLedgeJump?.Invoke(); // <-- Fire ledge jump event here
     }
 
     private void TryConsumeWallJumpBuffer()
@@ -415,6 +415,8 @@ public void Revive()
         isOnWall = false;
         isJumping = true;
         rb.gravityScale = gravityScale;
+        
+        OnJump?.Invoke();
     }
 
     private void SetFacing(float dir)
@@ -445,6 +447,8 @@ public void Revive()
             jumpBufferTimer = 0f;
             coyoteTimer = 0f;
             isJumping = true;
+            
+            OnJump?.Invoke();
         }
     }
 
@@ -487,7 +491,25 @@ public void Revive()
         if (previewCol == null) return;
 
         Bounds b = previewCol.bounds;
+
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(b.center, b.size);
+
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        }
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(new Vector2(b.min.x, b.center.y), checkRadius);
+        Gizmos.DrawWireSphere(new Vector2(b.max.x, b.center.y), checkRadius);
+
+        Gizmos.color = Color.yellow;
+        Vector2 leftLedgePos = new Vector2(b.min.x, b.max.y - ledgeCheckOffset);
+        Vector2 rightLedgePos = new Vector2(b.max.x, b.max.y - ledgeCheckOffset);
+
+        Gizmos.DrawWireSphere(leftLedgePos, checkRadius);
+        Gizmos.DrawWireSphere(rightLedgePos, checkRadius);
     }
 }

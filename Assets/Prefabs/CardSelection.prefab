@@ -243,6 +243,8 @@ MonoBehaviour:
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0.8, g: 0.2, b: 0.2, a: 1}
   selectedScale: {x: 0.95, y: 0.95, z: 0.95}
+  hoverSFX: {fileID: 8300000, guid: 537c410d9972c7f4aaf63c6c5b301813, type: 3}
+  selectSFX: {fileID: 8300000, guid: 898f37e045be5db4b8eed8dba9288553, type: 3}
 --- !u!1 &5563260545750527411
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +383,8 @@ MonoBehaviour:
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0.8, g: 0.2, b: 0.2, a: 1}
   selectedScale: {x: 0.95, y: 0.95, z: 0.95}
+  hoverSFX: {fileID: 8300000, guid: 537c410d9972c7f4aaf63c6c5b301813, type: 3}
+  selectSFX: {fileID: 8300000, guid: 898f37e045be5db4b8eed8dba9288553, type: 3}
 --- !u!1 &5814861629125018599
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,3 +626,5 @@ MonoBehaviour:
   unselectedColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0.8, g: 0.2, b: 0.2, a: 1}
   selectedScale: {x: 0.95, y: 0.95, z: 0.95}
+  hoverSFX: {fileID: 8300000, guid: 537c410d9972c7f4aaf63c6c5b301813, type: 3}
+  selectSFX: {fileID: 8300000, guid: 898f37e045be5db4b8eed8dba9288553, type: 3}

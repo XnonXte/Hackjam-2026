@@ -2958,7 +2958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2046828643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3116,6 +3116,10 @@ PrefabInstance:
     - target: {fileID: 5817055878324179080, guid: f47e6bc3de781354aa9df4e27fe748c9, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817055878324179080, guid: f47e6bc3de781354aa9df4e27fe748c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5824106768773460279, guid: f47e6bc3de781354aa9df4e27fe748c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3301,11 +3305,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1088710156059417838, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1088710156059417838, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1088710156059417838, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3317,19 +3321,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088710156059417838, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 1088710156059417838, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -539.73334
       objectReference: {fileID: 0}
     - target: {fileID: 1776195034723241932, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776195034723241932, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776195034723241932, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3341,11 +3345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1776195034723241932, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 1776195034723241932, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -539.73334
       objectReference: {fileID: 0}
     - target: {fileID: 1902329618880385873, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_Pivot.x
@@ -3429,11 +3433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4001343075151752275, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4001343075151752275, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4001343075151752275, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3445,15 +3449,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4001343075151752275, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 4001343075151752275, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -539.73334
       objectReference: {fileID: 0}
     - target: {fileID: 5814861629125018599, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_Name
       value: CardSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814861629125018599, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8540838824649550194, guid: 9e47b4acd8dad184fbfceb71ef7abb99, type: 3}
       propertyPath: m_UiScaleMode

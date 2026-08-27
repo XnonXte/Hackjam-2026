@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 8747093322501230211}
   - component: {fileID: 2761575315178518714}
   - component: {fileID: 5844905283231569143}
+  - component: {fileID: 3376780222166139005}
+  - component: {fileID: 4126752808055954283}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -169,12 +171,13 @@ MonoBehaviour:
   grabAction: {fileID: 7977249328261593433, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   groundCheck: {fileID: 2108642695970499174}
   checkRadius: 0.1
+  ledgeCheckOffset: 0.31
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   unclimbableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   maxSpeed: 9
   groundAcceleration: 80
   groundDeceleration: 80
@@ -270,6 +273,133 @@ CapsuleCollider2D:
   m_Offset: {x: -0.032355785, y: -0.06511855}
   m_Size: {x: 0.69043446, y: 1.0572629}
   m_Direction: 0
+--- !u!82 &3376780222166139005
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3715826489529060665}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4126752808055954283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3715826489529060665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c480ae85db9e724b8fa0d57f6d19868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSound
+  controller: {fileID: 1583685835407758691}
+  sfxSource: {fileID: 3376780222166139005}
+  jumpClips:
+  - {fileID: 8300000, guid: 4e18ad03ad16d9a4a92d2a830d106169, type: 3}
+  landClips:
+  - {fileID: 8300000, guid: 2f1e6406aa910174ea3555d65a9a8d5d, type: 3}
+  ledgeJumpClips:
+  - {fileID: 8300000, guid: 4e18ad03ad16d9a4a92d2a830d106169, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: 118ebabb748fceb4aae56a2a4b5ff0b2, type: 3}
+  dashClips:
+  - {fileID: 8300000, guid: c391c35299881fd4bbe66fc3795a1911, type: 3}
+  climbClips:
+  - {fileID: 8300000, guid: 73277a0654cdd2c4983ee0ab55559624, type: 3}
+  climbStepInterval: 0.28
+  minClimbSpeed: 0.05
+  pitchRange: {x: 0.95, y: 1.05}
+  sfxVolume: 1
 --- !u!1 &5183199170858477255
 GameObject:
   m_ObjectHideFlags: 0
