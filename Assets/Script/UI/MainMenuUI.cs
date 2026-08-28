@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // Tambahkan ini untuk memuat scene
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -8,11 +9,29 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject levelSelectPanel;
 
-    // Mungkin nanti kalau mau buat animasi di kelas ini juga!
+    [Header("Tutorial Settings")]
+    [SerializeField] private string tutorialSceneName = "Tutorial"; // Sesuaikan dengan nama scenemu
 
     private void Start()
     {
-        ShowMainMenu(); // Tampilkan main menu saat pertama kali scene dibuka
+        ShowMainMenu();
+    }
+
+    // --- FUNGSI BARU UNTUK TOMBOL "START GAME" ---
+    public void OnStartGameClicked()
+    {
+        // Mengecek data JSON
+        if (!DataManager.HasCompletedTutorial())
+        {
+            // Jika belum tamat tutorial, langsung lempar ke scene tutorial
+            GameManager.Instance.levelID = 0;
+            SceneManager.LoadScene(tutorialSceneName);
+        }
+        else
+        {
+            // Jika sudah tamat, buka panel Level Select seperti biasa
+            ShowLevelSelect();
+        }
     }
 
     public void ShowMainMenu()
