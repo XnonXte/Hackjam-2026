@@ -3392,7 +3392,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2062573517116335494}
         m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
-        m_MethodName: OnClickNextLevel
+        m_MethodName: OnClickPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
