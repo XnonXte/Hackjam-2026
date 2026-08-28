@@ -43,6 +43,7 @@ public class LevelButtonUI : MonoBehaviour
     // Sambungkan fungsi ini ke event OnClick() di komponen Button Unity
     public void OnClickStartGame()
     {
+        GameManager.Instance.levelID = levelID;
         LevelSelectionManager.Instance.StartGame(levelID);
     }
 }

@@ -11,7 +11,7 @@ public class GameUI : MonoBehaviour
     public GameObject gamePanel;
     public GameObject levelCompletePanel;
     public GameObject tutorialCompletePanel;
-    public GameObject abilitySelectionPanel; // Boleh kosong (null) - lihat catatan di Start()
+    public GameObject abilitySelectionPanel; // Wajib di-assign untuk semua level selain tutorial (levelID == 0)
 
     [Header("References")]
     public InputActionReference pauseAction;
@@ -39,25 +39,19 @@ public class GameUI : MonoBehaviour
         levelCompletePanel.SetActive(false);
         tutorialCompletePanel.SetActive(false);
 
-        // Kalau abilitySelectionPanel gak di-assign, anggap level ini
-        // memang tidak punya fase ability-selection sama sekali -
-        // langsung perlakukan seperti tutorial (levelID == 0).
-        if (abilitySelectionPanel == null)
+        // Tutorial (levelID == 0) tidak pernah menampilkan ability selection.
+        // Di luar tutorial, ability selection WAJIB ditampilkan, jadi
+        // abilitySelectionPanel harus selalu di-assign di Inspector.
+        if (GameManager.Instance.levelID == 0)
         {
             gamePanel.SetActive(true);
+            abilitySelectionPanel.SetActive(false);
             isSelectingAbility = false;
         }
         else
         {
             abilitySelectionPanel.SetActive(true);
             isSelectingAbility = true; // Set state awal
-
-            if (GameManager.Instance.levelID == 0)
-            {
-                gamePanel.SetActive(true);
-                abilitySelectionPanel.SetActive(false);
-                isSelectingAbility = false;
-            }
         }
     }
 
