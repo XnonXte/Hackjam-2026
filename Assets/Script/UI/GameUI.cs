@@ -38,6 +38,12 @@ public class GameUI : MonoBehaviour
         levelCompletePanel.SetActive(false);
         SettingsPanel.SetActive(false);
         isSelectingAbility = true; // Set state awal
+
+        if (GameManager.Instance.levelID == 0)
+        {
+            gamePanel.SetActive(true);
+            isSelectingAbility = false;
+        }
     }
 
     // --- FUNGSI UPDATE TAMPILAN (Dipanggil oleh GameManager) ---
