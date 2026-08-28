@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class DeathManager : MonoBehaviour
 {
     [Header("Respawn Settings")]
     [SerializeField] private Transform currentSpawnPoint;
-    
+
     [Tooltip("Time to wait before respawning. Set this slightly longer than your death animation.")]
     [SerializeField] private float respawnDelay = 1.0f;
 
@@ -24,6 +25,9 @@ public class DeathManager : MonoBehaviour
     private PlayerController player;
     private Camera mainCamera;
     private bool isRespawning = false;
+
+    // Event untuk Refresh kokndisi Coke
+    public static Action OnDied;
 
     private void Awake()
     {
@@ -92,7 +96,9 @@ public class DeathManager : MonoBehaviour
     private void Die()
     {
         if (isRespawning) return;
-        
+        OnDied?.Invoke();
+        GameSessionManager.Instance.ResetSession();
+
         player.Die();
         StartCoroutine(RespawnRoutine());
     }
@@ -100,13 +106,13 @@ public class DeathManager : MonoBehaviour
     private IEnumerator RespawnRoutine()
     {
         isRespawning = true;
-        
+
         yield return new WaitForSeconds(respawnDelay);
 
         if (currentSpawnPoint != null)
         {
             transform.position = currentSpawnPoint.position;
-            rb.linearVelocity = Vector2.zero; 
+            rb.linearVelocity = Vector2.zero;
         }
 
         player.Revive();

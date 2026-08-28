@@ -14,10 +14,6 @@ public class UIButtonSound : MonoBehaviour, IPointerEnterHandler
 
     private Button button;
 
-    // Tambahkan variabel ini di bagian atas class
-    private static float lastHoverTime = 0f;
-    private float hoverCooldown = 0.05f; // Jeda 0.05 detik
-
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -28,22 +24,17 @@ public class UIButtonSound : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Cek apakah jeda waktu dari hover terakhir sudah melewati cooldown
-        if (Time.unscaledTime - lastHoverTime < hoverCooldown) return;
-
         if (hoverSFX != null && AudioManager.Instance != null && button.interactable)
         {
-            AudioManager.Instance.PlaySFX(hoverSFX);
-            lastHoverTime = Time.unscaledTime; // Catat waktu hover terakhir
+            AudioManager.Instance.PlayUISFX(hoverSFX);
         }
     }
 
-    // Terpanggil otomatis saat tombol diklik
     private void OnClickSound()
     {
         if (clickSFX != null && AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySFX(clickSFX);
+            AudioManager.Instance.PlayUISFX(clickSFX);
         }
     }
 }

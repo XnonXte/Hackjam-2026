@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed14dcdfa1a70d14e80d219d4ccf8f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CokeController
+  cokeID: 
   floatAmplitude: 0.2
   floatFrequency: 3
   collectSound: {fileID: 8300000, guid: b74640ec35abf204c92798d22efae1ff, type: 3}
-  cokeID: 
+  pickupEffectPrefab: {fileID: 655376602907660667, guid: 8823dd372ba0ffa4dab17c49cdd44b2d, type: 3}

@@ -1,13 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectionManager : MonoBehaviour
 {
     public static LevelSelectionManager Instance;
 
     [Header("Referensi")]
-    public LevelButtonUI[] allLevelButtons; // Drag semua tombol level ke sini
-    public LevelModalUI modalUI;            // Drag panel modal ke sini
+    public LevelButtonUI[] allLevelButtons;
     public TextMeshProUGUI cokeCounter;
 
     private void Awake()
@@ -17,9 +17,6 @@ public class LevelSelectionManager : MonoBehaviour
 
     private void Start()
     {
-        // 1. Pastikan modal tertutup saat menu baru dibuka
-        modalUI.CloseModal();
-
         // 2. Ambil seluruh data permanen dari DataManager
         GameData data = DataManager.GetGameData();
 
@@ -36,9 +33,9 @@ public class LevelSelectionManager : MonoBehaviour
         cokeCounter.text = DataManager.GetTotalCollectedCokes().ToString();
     }
 
-    // Fungsi jembatan: Tombol Level -> Manager -> Panel Modal
-    public void OpenModal(int levelID, LevelData data)
+    public void StartGame(int levelID)
     {
-        modalUI.ShowModal(levelID, data);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level " + levelID);
     }
 }

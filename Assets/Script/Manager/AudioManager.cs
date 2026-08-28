@@ -42,6 +42,16 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
+    // Gunakan ini khusus untuk UI agar suara tidak menumpuk dan bikin limiter jebol
+    public void PlayUISFX(AudioClip clip)
+    {
+        if (clip == null) return;
+
+        // Memakai .Play() akan otomatis mematikan suara SFX sebelumnya yang sedang jalan di channel ini
+        sfxSource.clip = clip;
+        sfxSource.Play();
+    }
+
     // Solusi cerdas pengganti PlayClipAtPoint agar masuk ke AudioMixer
     public void PlaySFXAtPosition(AudioClip clip, Vector3 position)
     {

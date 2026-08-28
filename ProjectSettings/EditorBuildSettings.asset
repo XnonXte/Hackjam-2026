@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level 10.unity
     guid: fe8503f1daa7ae743bda285e6d1c31f8
   - enabled: 1
-    path: Assets/Scenes/Faiz's Env/MainMenu.unity
+    path: Assets/Scenes/Levels/MainMenu.unity
     guid: a3e0f9cdf2dc38e4da45e5dffb77554c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

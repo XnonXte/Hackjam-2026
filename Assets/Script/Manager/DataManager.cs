@@ -24,6 +24,8 @@ public class LevelData
 public class GameData
 {
     public List<LevelData> levels = new List<LevelData>();
+    // --- FITUR BARU: Status penyelesaian tutorial ---
+    public bool hasCompletedTutorial = false;
 }
 
 // --- DATA MANAGER MAIN CLASS ---
@@ -34,7 +36,6 @@ public static class DataManager
     private static string GetSavePath()
     {
         string path = Application.persistentDataPath + "/savedata.json";
-        Debug.Log("LOKASI SAVE DATA: " + path); // Tambahkan baris ini
         return path;
     }
 
@@ -57,6 +58,24 @@ public static class DataManager
         return currentData;
     }
 
+    // --- FITUR BARU: CEK STATUS TUTORIAL ---
+    public static bool HasCompletedTutorial()
+    {
+        if (currentData == null) LoadData();
+        return currentData.hasCompletedTutorial;
+    }
+
+    // --- FITUR BARU: SIMPAN STATUS TUTORIAL ---
+    public static void CompleteTutorial()
+    {
+        if (currentData == null) LoadData();
+
+        currentData.hasCompletedTutorial = true;
+
+        string finalJson = JsonUtility.ToJson(currentData, true);
+        File.WriteAllText(GetSavePath(), finalJson);
+    }
+
     // --- MENGAMBIL STATUS COKE PER LEVEL ---
     public static bool IsCokeAlreadyCollected(int levelID, string cokeID)
     {
@@ -70,7 +89,6 @@ public static class DataManager
         return false;
     }
 
-    // --- FITUR BARU: MENGHITUNG TOTAL KESELURUHAN COKE ---
     public static int GetTotalCollectedCokes()
     {
         if (currentData == null) LoadData();
@@ -80,21 +98,16 @@ public static class DataManager
         {
             foreach (CokeStatus coke in level.cokeCollected)
             {
-                if (coke.isCollected)
-                {
-                    totalCokes++;
-                }
+                if (coke.isCollected) totalCokes++;
             }
         }
         return totalCokes;
     }
 
-    // --- MENYIMPAN PROGRESS SETELAH MENCAPAI GARIS AKHIR ---
     public static void SaveLevelProgress(int levelID, bool isCompleted, float finishTime, List<string> sessionCokes)
     {
         if (currentData == null) LoadData();
 
-        // 1. UPDATE DATA LEVEL SAAT INI
         LevelData levelData = currentData.levels.Find(lvl => lvl.levelID == levelID);
 
         if (levelData == null)
@@ -104,19 +117,13 @@ public static class DataManager
             currentData.levels.Add(levelData);
         }
 
-        // Pastikan status complete tidak berubah jadi false kalau sudah pernah true
-        if (isCompleted)
-        {
-            levelData.isCompleted = true;
-        }
+        if (isCompleted) levelData.isCompleted = true;
 
-        // Logika Best Time: Simpan jika waktu masih 0 (belum ada rekor) atau finishTime lebih cepat
         if (levelData.bestTime == 0 || finishTime < levelData.bestTime)
         {
             levelData.bestTime = finishTime;
         }
 
-        // Masukkan Coke baru ke dalam data permanen
         foreach (string cokeID in sessionCokes)
         {
             CokeStatus existingCoke = levelData.cokeCollected.Find(c => c.cokeID == cokeID);
@@ -126,7 +133,6 @@ public static class DataManager
             }
         }
 
-        // 2. UNLOCK LEVEL BERIKUTNYA
         int nextLevelID = levelID + 1;
         LevelData nextLevel = currentData.levels.Find(lvl => lvl.levelID == nextLevelID);
 
@@ -141,21 +147,15 @@ public static class DataManager
             nextLevel.isUnlocked = true;
         }
 
-        // 3. SIMPAN KE FILE JSON
         string finalJson = JsonUtility.ToJson(currentData, true);
         File.WriteAllText(GetSavePath(), finalJson);
     }
 
-    // --- FITUR BARU: RESET DATA & GET PATH UNTUK TESTING ---
     public static void ResetData()
     {
         string path = GetSavePath();
-        if (File.Exists(path))
-        {
-            File.Delete(path); // Menghapus file JSON fisik
-        }
-
-        currentData = new GameData(); // Mengosongkan data di memori
+        if (File.Exists(path)) File.Delete(path);
+        currentData = new GameData();
         Debug.LogWarning("⚠️ Save Data telah di-reset dan dihapus!");
     }
 }

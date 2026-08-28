@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-// using UnityEngine.SceneManagement; // Buka comment ini nanti kalau mau pindah scene
 
 [RequireComponent(typeof(Collider2D))]
 public class Sandwich : MonoBehaviour
 {
     [Header("Level Settings")]
-    [Tooltip("Isi dengan angka level saat ini (misal: 1)")]
+    [Tooltip("Isi dengan angka level saat ini (misal: 1, atau 0 untuk tutorial)")]
     public int currentLevelID;
 
     [Header("Floating Animation")]
@@ -15,6 +14,9 @@ public class Sandwich : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] private AudioClip collectSound;
+
+    [Header("Visual Effects")]
+    [SerializeField] private GameObject pickupEffectPrefab;
 
     private Vector3 startPos;
     private bool isCompleted = false;
@@ -28,7 +30,6 @@ public class Sandwich : MonoBehaviour
 
     private void Update()
     {
-        // Stop floating once the level is completed (optional, but looks nice)
         if (isCompleted) return;
 
         float newY = startPos.y + Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
@@ -37,7 +38,6 @@ public class Sandwich : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Prevent multiple triggers in the same frame or after completion
         if (isCompleted) return;
 
         PlayerController player = collision.GetComponent<PlayerController>();
@@ -52,14 +52,24 @@ public class Sandwich : MonoBehaviour
             }
 
             float finishTime = Time.timeSinceLevelLoad;
-
             List<string> cokesObtained = GameSessionManager.Instance.collectedCokesInSession;
+
+            // --- SPAWN ANIMASI DI SINI ---
+            if (pickupEffectPrefab != null)
+            {
+                Instantiate(pickupEffectPrefab, transform.position, Quaternion.identity);
+            }
+
+            // --- LOGIKA TUTORIAL BARU ---
+            // Cek apakah ini level tutorial (misalnya kamu set ID level tutorial menjadi 0)
+            if (currentLevelID == 0)
+            {
+                DataManager.CompleteTutorial();
+            }
+
             DataManager.SaveLevelProgress(currentLevelID, true, finishTime, cokesObtained);
 
-            // Log untuk keperluan Debugging
             Debug.Log($"Objective reached! Level {currentLevelID} Complete!");
-            Debug.Log($"Best Time Baru: {finishTime.ToString("F2")} detik.");
-            Debug.Log($"Coke Diselamatkan: {string.Join(", ", cokesObtained)}");
 
             GameSessionManager.Instance.ResetSession();
             gameObject.SetActive(false);

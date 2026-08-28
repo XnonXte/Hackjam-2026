@@ -15,13 +15,9 @@ public class LevelButtonUI : MonoBehaviour
     public Sprite unlockedSprite;
     public Sprite completedSprite;
 
-    private LevelData myData; // Menyimpan data level ini untuk dikirim ke Modal nanti
-
     // Dipanggil oleh Manager saat pertama kali scene dibuka
     public void Setup(LevelData data)
     {
-        myData = data;
-
         // Level 1 selalu otomatis terbuka, atau level lain yang isUnlocked = true
         bool isUnlocked = (data != null && data.isUnlocked) || levelID == 1;
         bool isCompleted = data != null && data.isCompleted;
@@ -45,8 +41,8 @@ public class LevelButtonUI : MonoBehaviour
     }
 
     // Sambungkan fungsi ini ke event OnClick() di komponen Button Unity
-    public void OnClickOpenModal()
+    public void OnClickStartGame()
     {
-        LevelSelectionManager.Instance.OpenModal(levelID, myData);
+        LevelSelectionManager.Instance.StartGame(levelID);
     }
 }

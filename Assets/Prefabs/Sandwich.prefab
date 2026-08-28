@@ -155,3 +155,4 @@ MonoBehaviour:
   floatAmplitude: 0.25
   floatFrequency: 2
   collectSound: {fileID: 8300000, guid: 643dc920ea41e3a4fbc00f00b4898d8e, type: 3}
+  pickupEffectPrefab: {fileID: 655376602907660667, guid: 8823dd372ba0ffa4dab17c49cdd44b2d, type: 3}

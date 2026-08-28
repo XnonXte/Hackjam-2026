@@ -39,6 +39,9 @@ public class AbilitySelectionManager : MonoBehaviour
     {
         if (isStartingLevel) return;
 
+        // CEGAH KLIK JIKA SEDANG PAUSE
+        if (GameManager.Instance != null && GameManager.Instance.isPaused) return;
+
         if (clickedCard.IsSelected())
         {
             clickedCard.SetSelected(false);
