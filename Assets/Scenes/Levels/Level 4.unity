@@ -2275,8 +2275,8 @@ Tilemap:
   - first: {x: 10, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 9
+      m_TileIndex: 18
+      m_TileSpriteIndex: 18
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2285,8 +2285,8 @@ Tilemap:
   - first: {x: 11, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 12
-      m_TileSpriteIndex: 12
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2295,8 +2295,8 @@ Tilemap:
   - first: {x: 12, y: 3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 12
-      m_TileSpriteIndex: 12
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2437,36 +2437,6 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 0
       m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 10, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 18
-      m_TileSpriteIndex: 18
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 11, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 12, y: 4, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2822,7 +2792,7 @@ Tilemap:
     m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 6b26810b5f633e749924e30a5ac3bfef, type: 2}
   - serializedVersion: 2
-    m_RefCount: 17
+    m_RefCount: 16
     m_Data: {fileID: 11400000, guid: a31a513985a76664eb43941c56378c29, type: 2}
   - serializedVersion: 2
     m_RefCount: 10
@@ -2831,7 +2801,7 @@ Tilemap:
     m_RefCount: 1
     m_Data: {fileID: 11400000, guid: efc4ee0a0ee7afe40a6d49e6854038c7, type: 2}
   - serializedVersion: 2
-    m_RefCount: 18
+    m_RefCount: 16
     m_Data: {fileID: 11400000, guid: d46fad4b9103a214bbc61e746f19ec22, type: 2}
   - serializedVersion: 2
     m_RefCount: 1
@@ -2892,7 +2862,7 @@ Tilemap:
     m_RefCount: 2
     m_Data: {fileID: -2008541793, guid: 99cc0f8d27fb2c04796032eb795071ae, type: 3}
   - serializedVersion: 2
-    m_RefCount: 17
+    m_RefCount: 16
     m_Data: {fileID: 1998577161, guid: 99cc0f8d27fb2c04796032eb795071ae, type: 3}
   - serializedVersion: 2
     m_RefCount: 10
@@ -2901,7 +2871,7 @@ Tilemap:
     m_RefCount: 1
     m_Data: {fileID: -503163212, guid: 99cc0f8d27fb2c04796032eb795071ae, type: 3}
   - serializedVersion: 2
-    m_RefCount: 18
+    m_RefCount: 16
     m_Data: {fileID: 382671485, guid: 99cc0f8d27fb2c04796032eb795071ae, type: 3}
   - serializedVersion: 2
     m_RefCount: 1
@@ -2935,7 +2905,7 @@ Tilemap:
     m_Data: {fileID: 141350685, guid: 99cc0f8d27fb2c04796032eb795071ae, type: 3}
   m_TileMatrixArray:
   - serializedVersion: 2
-    m_RefCount: 199
+    m_RefCount: 196
     m_Data:
       e00: 1
       e01: 0
@@ -2955,7 +2925,7 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - serializedVersion: 2
-    m_RefCount: 199
+    m_RefCount: 196
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -5477,7 +5447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8070908600013872902, guid: 2e878b08095e42a4d8ebfd190c18f4c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.929
+      value: 4.81
       objectReference: {fileID: 0}
     - target: {fileID: 8070908600013872902, guid: 2e878b08095e42a4d8ebfd190c18f4c4, type: 3}
       propertyPath: m_LocalPosition.z
