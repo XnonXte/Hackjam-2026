@@ -48,7 +48,8 @@ public class Sandwich : MonoBehaviour
 
             if (collectSound != null && AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlaySFXAtPosition(collectSound, transform.position);
+                AudioManager.Instance.PlaySFX(collectSound);
+                Debug.Log("Hai SFX Sandwich dimainkan!!!");
             }
 
             float finishTime = Time.timeSinceLevelLoad;
@@ -68,6 +69,7 @@ public class Sandwich : MonoBehaviour
             }
 
             DataManager.SaveLevelProgress(currentLevelID, true, finishTime, cokesObtained);
+            player.isInputLocked = true;
 
             Debug.Log($"Objective reached! Level {currentLevelID} Complete!");
 

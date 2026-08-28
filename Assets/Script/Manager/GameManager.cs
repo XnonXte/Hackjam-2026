@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
 
     public void ExitToMenu()
     {
+        if (isPaused) isPaused = false;
+        isGameOver = false;
         Time.timeScale = 1f;
         if (GameSessionManager.Instance != null) GameSessionManager.Instance.ResetSession();
         SceneManager.LoadScene("MainMenu");
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
             isGameOver = false;
             isPaused = false;
             levelID = nextLevelTarget;
+
             SceneManager.LoadScene(nextSceneName);
         }
         else

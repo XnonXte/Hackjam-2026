@@ -10,7 +10,8 @@ public class GameUI : MonoBehaviour
     public GameObject pausePanel;
     public GameObject gamePanel;
     public GameObject levelCompletePanel;
-    public GameObject SettingsPanel;
+    public GameObject tutorialCompletePanel;
+    public GameObject abilitySelectionPanel; // Boleh kosong (null) - lihat catatan di Start()
 
     [Header("References")]
     public InputActionReference pauseAction;
@@ -36,13 +37,27 @@ public class GameUI : MonoBehaviour
         pausePanel.SetActive(false);
         gamePanel.SetActive(false);
         levelCompletePanel.SetActive(false);
-        SettingsPanel.SetActive(false);
-        isSelectingAbility = true; // Set state awal
+        tutorialCompletePanel.SetActive(false);
 
-        if (GameManager.Instance.levelID == 0)
+        // Kalau abilitySelectionPanel gak di-assign, anggap level ini
+        // memang tidak punya fase ability-selection sama sekali -
+        // langsung perlakukan seperti tutorial (levelID == 0).
+        if (abilitySelectionPanel == null)
         {
             gamePanel.SetActive(true);
             isSelectingAbility = false;
+        }
+        else
+        {
+            abilitySelectionPanel.SetActive(true);
+            isSelectingAbility = true; // Set state awal
+
+            if (GameManager.Instance.levelID == 0)
+            {
+                gamePanel.SetActive(true);
+                abilitySelectionPanel.SetActive(false);
+                isSelectingAbility = false;
+            }
         }
     }
 
@@ -55,13 +70,32 @@ public class GameUI : MonoBehaviour
         {
             gamePanel.SetActive(!show);
         }
+        else
+        {
+            abilitySelectionPanel?.SetActive(!show);
+        }
+
     }
 
     public void ShowLevelComplete()
     {
-        levelCompletePanel.SetActive(true);
-        gamePanel.SetActive(false);
-        pausePanel.SetActive(false);
+        if (GameManager.Instance.levelID == 0)
+        {
+            tutorialCompletePanel.SetActive(true);
+            levelCompletePanel.SetActive(false);
+            gamePanel.SetActive(false);
+            pausePanel.SetActive(false);
+            abilitySelectionPanel?.SetActive(false);
+        }
+        else
+        {
+            levelCompletePanel.SetActive(true);
+            tutorialCompletePanel.SetActive(false);
+            gamePanel.SetActive(false);
+            pausePanel.SetActive(false);
+            abilitySelectionPanel?.SetActive(false);
+        }
+
     }
 
     public void ShowGamePanel()
@@ -69,15 +103,10 @@ public class GameUI : MonoBehaviour
         isSelectingAbility = false;
 
         levelCompletePanel.SetActive(false);
+        tutorialCompletePanel.SetActive(false);
         gamePanel.SetActive(true);
         pausePanel.SetActive(false);
-    }
-
-    public void ShowSettingsPanel(bool show)
-    {
-        SettingsPanel.SetActive(show);
-
-        pausePanel.SetActive(!show);
+        abilitySelectionPanel?.SetActive(false);
     }
 
     // --- HANDLE BUTTON CLICKS ---

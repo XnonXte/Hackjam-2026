@@ -76,7 +76,7 @@ public class CokeController : MonoBehaviour
         {
             if (collectSound != null && AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlaySFXAtPosition(collectSound, transform.position);
+                AudioManager.Instance.PlaySFX(collectSound);
             }
 
             // --- SPAWN ANIMASI DI SINI ---

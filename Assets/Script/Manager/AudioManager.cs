@@ -52,21 +52,6 @@ public class AudioManager : MonoBehaviour
         sfxSource.Play();
     }
 
-    // Solusi cerdas pengganti PlayClipAtPoint agar masuk ke AudioMixer
-    public void PlaySFXAtPosition(AudioClip clip, Vector3 position)
-    {
-        GameObject tempGO = new GameObject("TempAudio");
-        tempGO.transform.position = position;
-
-        AudioSource source = tempGO.AddComponent<AudioSource>();
-        source.clip = clip;
-        source.outputAudioMixerGroup = sfxGroup; // Masukkan ke grup SFX
-        source.spatialBlend = 1f; // 1 = 3D sound, 0 = 2D sound. Sesuaikan dengan gamemu.
-
-        source.Play();
-        Destroy(tempGO, clip.length); // Hancurkan objek otomatis setelah suara selesai
-    }
-
     // =================================================================
     // PENGATUR VOLUME (Logarithmic Scale)
     // =================================================================
